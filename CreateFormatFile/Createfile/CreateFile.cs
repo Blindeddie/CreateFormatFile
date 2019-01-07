@@ -20,17 +20,20 @@ namespace CreateFormatFile.Createfile
                 }
 				
                 char delim;
-  
+                string delimtxt;
                 switch (delimiter)
                 {
                 	case "t":
                 		delim = '\t';
+                		delimtxt = @"\t";
                 		break;
                 	case "|":
                 		delim = '|';
+                		delimtxt = "|";
                 		break;
                 	default:
                 		delim = ',';
+                		delimtxt = ",";
                 		break;
                 }
 				const char dq = '"';
@@ -55,7 +58,7 @@ namespace CreateFormatFile.Createfile
                     
                     for( int i = 0; i < items.Length; i++){
                         if (maxrow  !=(i + 1) ){
-                        output = (i + 1).ToString() + sep + "SQLCHAR" + sep + "0" + sep + "50" + sep + dq + delimiter + dq + sep + (i + 1).ToString() + sep + items[i] + sep + "Latin1_General_CI_AS";
+                        output = (i + 1).ToString() + sep + "SQLCHAR" + sep + "0" + sep + "50" + sep + dq + delimtxt + dq + sep + (i + 1).ToString() + sep + items[i] + sep + "Latin1_General_CI_AS";
                     }else{
                         output = (i + 1).ToString() + sep + "SQLCHAR" + sep + "0" + sep + "50" + sep + dq + @"\r\n" + dq + sep + (i + 1).ToString() + sep + items[i] + sep + "Latin1_General_CI_AS";
                     }
