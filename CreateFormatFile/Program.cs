@@ -28,8 +28,8 @@ namespace CreateFormatFile
                 {"p|filepath=", "(req) The path to the folder containing file", (string v)=>Filepath=v },
                 {"f|filename=", "(req) The filename to read from", (string v)=>Filename=v },
                 {"o|outfile=", "(req) The output filename (the format file)", (string v)=>Outfile=v },
-                {"d|delim=", "(req) The column delimiter for the header row", (string v)=>Delim=v },
-                {"help", "show help and close", v=>showHelp = v != null },
+                {"d|delim=", "(req) The column delimiter for the header row t = [Tab]", (string v)=>Delim=v },
+                {"help", "Help", v=>showHelp = v != null },
             };
 			
 			try
@@ -79,7 +79,7 @@ namespace CreateFormatFile
 			
 			var cf = new CreateFile();
             //cf.CreateFmtFile(args[0],args[1],args[2],Convert.ToInt32(args[3]));
-            cf.CreateFmtFile(Filepath,Filename,Outfile,"9",Delim);
+            cf.CreateFmtFile(Filepath,Filename,Outfile,Delim);
            //return 1;
 		}
 		static void ShowHelp(OptionSet Opts)

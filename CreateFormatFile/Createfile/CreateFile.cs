@@ -6,7 +6,7 @@ namespace CreateFormatFile.Createfile
 	
 	public class CreateFile
 	{
-		public void CreateFmtFile(string path,string infile,string outfile,string subfolder,string delimiter)
+		public void CreateFmtFile(string path,string infile,string outfile,string delimiter)
         {
             using (TextReader tr = File.OpenText(path + infile))
             {
@@ -14,11 +14,7 @@ namespace CreateFormatFile.Createfile
                 {
                     Directory.CreateDirectory(path);
                 }
-                if (!Directory.Exists(path + subfolder))
-                {
-                Directory.CreateDirectory(path + subfolder);
-                }
-				
+               	
                 char delim;
                 string delimtxt;
                 switch (delimiter)
@@ -37,14 +33,13 @@ namespace CreateFormatFile.Createfile
                 		break;
                 }
 				const char dq = '"';
-				//const char sq = '\t';
-			    const string sep = "  ";
+				const string sep = "  ";
                 string output = "";
                 string line;
                 int counter = 0;
                 int maxrow;
                 
-                StreamWriter sw = new StreamWriter(path + subfolder + "\\" + outfile);
+                StreamWriter sw = new StreamWriter(path + outfile);
 
                 while (counter < 1)
                 {
@@ -58,9 +53,9 @@ namespace CreateFormatFile.Createfile
                     
                     for( int i = 0; i < items.Length; i++){
                         if (maxrow  !=(i + 1) ){
-                        output = (i + 1).ToString() + sep + "SQLCHAR" + sep + "0" + sep + "50" + sep + dq + delimtxt + dq + sep + (i + 1).ToString() + sep + items[i] + sep + "Latin1_General_CI_AS";
+                        output = (i + 1).ToString() + sep + "SQLCHAR" + sep + "0" + sep + "100" + sep + dq + delimtxt + dq + sep + (i + 1).ToString() + sep + items[i] + sep + "Latin1_General_CI_AS";
                     }else{
-                        output = (i + 1).ToString() + sep + "SQLCHAR" + sep + "0" + sep + "50" + sep + dq + @"\r\n" + dq + sep + (i + 1).ToString() + sep + items[i] + sep + "Latin1_General_CI_AS";
+                        output = (i + 1).ToString() + sep + "SQLCHAR" + sep + "0" + sep + "100" + sep + dq + @"\r\n" + dq + sep + (i + 1).ToString() + sep + items[i] + sep + "Latin1_General_CI_AS";
                     }
                     
                    sw.WriteLine(output);
