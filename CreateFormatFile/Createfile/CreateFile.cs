@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-
+using System.Text;
 namespace CreateFormatFile.Createfile
 {
 	
@@ -19,10 +19,23 @@ namespace CreateFormatFile.Createfile
                 Directory.CreateDirectory(path + subfolder);
                 }
 				
-               
+                char delim;
+  
+                switch (delimiter)
+                {
+                	case "t":
+                		delim = '\t';
+                		break;
+                	case "|":
+                		delim = '|';
+                		break;
+                	default:
+                		delim = ',';
+                		break;
+                }
 				const char dq = '"';
-				const char tab = '\t';
-                const string sep = "  ";
+				//const char sq = '\t';
+			    const string sep = "  ";
                 string output = "";
                 string line;
                 int counter = 0;
@@ -34,7 +47,7 @@ namespace CreateFormatFile.Createfile
                 {
                     line = tr.ReadLine();
                 // split the line of text into an array
-                    string[] items = line.Split(tab);
+                string[] items = line.Split(delim);
                     maxrow = items.Length;
                     
                     sw.WriteLine("14.0");
@@ -42,7 +55,7 @@ namespace CreateFormatFile.Createfile
                     
                     for( int i = 0; i < items.Length; i++){
                         if (maxrow  !=(i + 1) ){
-                        output = (i + 1).ToString() + sep + "SQLCHAR" + sep + "0" + sep + "50" + sep + dq + @"\t" + dq + sep + (i + 1).ToString() + sep + items[i] + sep + "Latin1_General_CI_AS";
+                        output = (i + 1).ToString() + sep + "SQLCHAR" + sep + "0" + sep + "50" + sep + dq + delimiter + dq + sep + (i + 1).ToString() + sep + items[i] + sep + "Latin1_General_CI_AS";
                     }else{
                         output = (i + 1).ToString() + sep + "SQLCHAR" + sep + "0" + sep + "50" + sep + dq + @"\r\n" + dq + sep + (i + 1).ToString() + sep + items[i] + sep + "Latin1_General_CI_AS";
                     }
