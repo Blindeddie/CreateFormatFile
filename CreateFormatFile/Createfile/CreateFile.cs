@@ -23,14 +23,19 @@ namespace CreateFormatFile.Createfile
                 		delim = '\t';
                 		delimtxt = @"\t";
                 		break;
-                	case "|":
+                	case "p":
                 		delim = '|';
                 		delimtxt = "|";
                 		break;
-                	default:
+                	case "c":
                 		delim = ',';
                 		delimtxt = ",";
                 		break;
+                	default:
+                		delim = ';';
+                		delimtxt = ";";
+                		break;
+                		
                 }
 				const char dq = '"';
 				const string sep = "  ";
