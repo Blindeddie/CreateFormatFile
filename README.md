@@ -14,7 +14,7 @@ Parameters:
 usage:
 
 CreateFormatFile -p c:\temp\ -f myflatfile -o myflatfile.fmt -d t (for Tab delimited file)
-n
+
 # License
 
 GNU GENERAL PUBLIC LICENSE
